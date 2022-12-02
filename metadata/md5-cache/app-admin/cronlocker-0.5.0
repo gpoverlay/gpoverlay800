@@ -1,0 +1,13 @@
+BDEPEND=>=dev-lang/go-1.18 app-arch/unzip
+DEFINED_PHASES=compile install unpack
+DESCRIPTION=synchronize a cron job across multiple hosts using the consul lock feature
+EAPI=8
+HOMEPAGE=https://github.com/viafintech/cronlocker
+INHERIT=go-module
+KEYWORDS=~amd64
+LICENSE=MIT MPL-2.0
+RESTRICT=strip
+SLOT=0
+SRC_URI=https://github.com/Barzahlen/cronlocker/archive/v0.5.0.tar.gz -> cronlocker-0.5.0.tar.gz
+_eclasses_=go-module	4c4b34f361efda91762ffeda8f632c02
+_md5_=db9e5e2b0b2c9434fa640950093a04a2

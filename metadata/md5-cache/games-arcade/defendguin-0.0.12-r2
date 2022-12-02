@@ -1,0 +1,13 @@
+DEFINED_PHASES=install prepare
+DEPEND=media-libs/libsdl[joystick,sound,video] media-libs/sdl-mixer[mod]
+DESCRIPTION=Clone of the arcade game Defender, but with a Linux theme
+EAPI=8
+HOMEPAGE=http://www.newbreedsoftware.com/defendguin/
+INHERIT=desktop toolchain-funcs
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=media-libs/libsdl[joystick,sound,video] media-libs/sdl-mixer[mod]
+SLOT=0
+SRC_URI=ftp://ftp.tuxpaint.org/unix/x/defendguin/src/defendguin-0.0.12.tar.gz https://dev.gentoo.org/~ionen/distfiles/defendguin.png
+_eclasses_=desktop	7eb20ad915a0a318176d51bc2508ff5c	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=cfdc899b82ef0981c3fc53cfae6341de

@@ -1,0 +1,16 @@
+BDEPEND=man? ( dev-ruby/asciidoctor ) >=dev-util/ninja-1.8.2 >=dev-util/cmake-3.20.5
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=app-arch/bzip2 dev-libs/json-c:= sys-libs/zlib botan? ( dev-libs/botan:2= ) !botan? ( >=dev-libs/openssl-1.1.1:= ) test? ( dev-cpp/gtest )
+DESCRIPTION=High performance C++ OpenPGP library
+EAPI=8
+HOMEPAGE=https://www.rnpgp.org/ https://github.com/rnpgp/rnp
+INHERIT=cmake
+IUSE=+botan man test
+KEYWORDS=amd64 ~arm64 ~ppc64 x86
+LICENSE=Apache-2.0 BSD BSD-2
+RDEPEND=app-arch/bzip2 dev-libs/json-c:= sys-libs/zlib botan? ( dev-libs/botan:2= ) !botan? ( >=dev-libs/openssl-1.1.1:= )
+RESTRICT=!test? ( test )
+SLOT=0/0.16.1
+SRC_URI=https://github.com/rnpgp/rnp/archive/refs/tags/v0.16.2.tar.gz -> librnp-0.16.2.tar.gz
+_eclasses_=cmake	44afbf15c35884f7c840470f1cf05d0d	flag-o-matic	29a755b1291d64133634d80b0328f153	multilib	5ca4e49abed8e3a2f7b56920eadee157	multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	ninja-utils	8ed38f92fe095be374d6c4c8d4c0dda7	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144	xdg-utils	ac0e315a3688929e34ac75b139e7349a
+_md5_=e2e8935b4c0542b4248229783ec772fd

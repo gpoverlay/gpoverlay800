@@ -1,0 +1,15 @@
+BDEPEND=sys-devel/libtool
+DEFINED_PHASES=compile configure install prepare
+DEPEND=media-libs/flac:=[ogg] media-sound/sox[png]
+DESCRIPTION=Author a DVD-Audio DVD
+EAPI=8
+HOMEPAGE=http://dvd-audio.sourceforge.net
+INHERIT=desktop toolchain-funcs
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=media-libs/flac:=[ogg] media-sound/sox[png]
+SLOT=0
+SRC_URI=mirror://sourceforge/dvd-audio/dvda-author-10.06-300.tar.gz
+_eclasses_=desktop	7eb20ad915a0a318176d51bc2508ff5c	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=244caeaa09076877535dd51a9448a011

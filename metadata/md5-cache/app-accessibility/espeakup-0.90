@@ -1,0 +1,15 @@
+BDEPEND=man? ( || ( app-text/ronn-ng app-text/ronn ) ) >=dev-util/meson-0.62.2 >=dev-util/ninja-1.8.2 dev-util/meson-format-array
+DEFINED_PHASES=compile configure install postinst setup test
+DEPEND=app-accessibility/espeak-ng[sound] media-libs/alsa-lib
+DESCRIPTION=espeakup is a small lightweight connector for espeak and speakup
+EAPI=7
+HOMEPAGE=https://github.com/williamh/espeakup
+INHERIT=linux-info meson
+IUSE=man systemd
+KEYWORDS=amd64 ~arm ~arm64 ~loong x86
+LICENSE=GPL-3
+RDEPEND=app-accessibility/espeak-ng[sound] media-libs/alsa-lib
+SLOT=0
+SRC_URI=https://github.com/linux-speakup/espeakup/archive/v0.90.tar.gz -> espeakup-0.90.tar.gz
+_eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	linux-info	bbfa385d6907d7948d49a5e107bd654d	meson	1994a5aef5d4f5798b92f64d6f9a6003	multilib	5ca4e49abed8e3a2f7b56920eadee157	multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	ninja-utils	8ed38f92fe095be374d6c4c8d4c0dda7	python-utils-r1	25c880c1db58e21b80b684bacc964958	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=6bf19e45100d8d2e4ec68912fca324ca

@@ -1,0 +1,14 @@
+BDEPEND=docs? ( app-text/pandoc ) test? ( dev-lang/go ) virtual/pkgconfig
+DEFINED_PHASES=compile install
+DESCRIPTION=Early OOM Daemon for Linux
+EAPI=7
+HOMEPAGE=https://github.com/rfjakob/earlyoom
+INHERIT=systemd
+IUSE=docs systemd test
+KEYWORDS=amd64 x86
+LICENSE=MIT-with-advertising
+RESTRICT=test
+SLOT=0
+SRC_URI=https://github.com/rfjakob/earlyoom/archive/v1.6.2.tar.gz -> earlyoom-1.6.2.tar.gz
+_eclasses_=multilib	5ca4e49abed8e3a2f7b56920eadee157	systemd	5f4bb0758df2e483babf68cd517078ca	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=f553a669742c33c237a63b3c6bd43d5c

@@ -1,0 +1,12 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=compile install prepare setup
+DESCRIPTION=The NUMA daemon that manages application locality
+EAPI=8
+HOMEPAGE=http://fedoraproject.org/wiki/Features/numad
+INHERIT=linux-info systemd toolchain-funcs
+KEYWORDS=~amd64 -arm ~arm64 ~ppc64 ~s390 ~x86
+LICENSE=LGPL-2.1
+SLOT=0
+SRC_URI=mirror://gentoo/numad-0.5-334278f.tar.bz2
+_eclasses_=linux-info	bbfa385d6907d7948d49a5e107bd654d	multilib	5ca4e49abed8e3a2f7b56920eadee157	systemd	5f4bb0758df2e483babf68cd517078ca	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=7c88e4cbfaf5b72a081a0064b717bdeb

@@ -1,0 +1,15 @@
+BDEPEND=app-text/asciidoc app-text/docbook-xml-dtd:4.5 >=app-text/docbook-xsl-stylesheets-1.75.2 >=dev-libs/libxslt-1.1.26 virtual/pkgconfig virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=configure install postinst setup test unpack
+DEPEND=>=sys-apps/kmod-23 elibc_musl? ( sys-libs/fts-standalone )
+DESCRIPTION=Generic initramfs generation tool
+EAPI=8
+HOMEPAGE=https://dracut.wiki.kernel.org
+INHERIT=bash-completion-r1 linux-info optfeature systemd toolchain-funcs git-r3
+IUSE=selinux test
+LICENSE=GPL-2
+PROPERTIES=live
+RDEPEND=app-arch/cpio >=app-shells/bash-4.0:0 sys-apps/coreutils[xattr(-)] >=sys-apps/kmod-23[tools] || ( >=sys-apps/sysvinit-2.87-r3 sys-apps/openrc[sysv-utils(-),selinux?] sys-apps/systemd[sysv-utils] sys-apps/s6-linux-init[sysv-utils(-)] ) >=sys-apps/util-linux-2.21 virtual/pkgconfig virtual/udev elibc_musl? ( sys-libs/fts-standalone ) selinux? ( sec-policy/selinux-dracut sys-libs/libselinux sys-libs/libsepol )
+RESTRICT=!test? ( test )
+SLOT=0
+_eclasses_=bash-completion-r1	f5e7a020fd9c741740756aac61bf75ff	git-r3	2347f8fe2d392b2a091191f94be37e6f	linux-info	bbfa385d6907d7948d49a5e107bd654d	multilib	5ca4e49abed8e3a2f7b56920eadee157	optfeature	1a2157392a869265b2afcb63a26c12ac	systemd	5f4bb0758df2e483babf68cd517078ca	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=e9616d00d63e95544a5bb45b54979dd5

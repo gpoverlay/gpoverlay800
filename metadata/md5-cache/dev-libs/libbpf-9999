@@ -1,0 +1,14 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=configure install unpack
+DEPEND=sys-kernel/linux-headers virtual/libelf
+DESCRIPTION=Stand-alone build of libbpf from the Linux kernel
+EAPI=8
+HOMEPAGE=https://github.com/libbpf/libbpf
+INHERIT=flag-o-matic toolchain-funcs git-r3
+IUSE=static-libs
+LICENSE=GPL-2 LGPL-2.1 BSD-2
+PROPERTIES=live
+RDEPEND=sys-kernel/linux-headers virtual/libelf
+SLOT=0/9999
+_eclasses_=flag-o-matic	29a755b1291d64133634d80b0328f153	git-r3	2347f8fe2d392b2a091191f94be37e6f	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=7833724ed803654f570c8a2c32db0ad5

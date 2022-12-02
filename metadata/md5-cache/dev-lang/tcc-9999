@@ -1,0 +1,13 @@
+BDEPEND=dev-lang/perl >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install prepare test unpack
+DESCRIPTION=A very small C compiler for ix86/amd64
+EAPI=8
+HOMEPAGE=https://bellard.org/tcc/ https://repo.or.cz/tinycc.git/
+INHERIT=toolchain-funcs git-r3
+IUSE=test
+LICENSE=LGPL-2.1
+PROPERTIES=live
+RESTRICT=!test? ( test )
+SLOT=0
+_eclasses_=git-r3	2347f8fe2d392b2a091191f94be37e6f	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=7956cdc417ccf5b92ee570324d43d82a

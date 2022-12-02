@@ -1,0 +1,60 @@
+# Copyright 2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# WANG Xuerui <xen0n@gentoo.org> (2022-12-01)
+# app-emulation/xen has arch-specific code, hence not available for loong yet.
+xen
+
+# WANG Xuerui <xen0n@gentoo.org> (2022-11-28)
+# media-sound/nas currently not buildable due to x11-misc/xorg-cf-files
+# lacking arch-specific adaptation
+nas
+
+# WANG Xuerui <xen0n@gentoo.org> (2022-11-18)
+# net-libs/webkit-gtk is not available on loong yet.
+webkit
+
+# WANG Xuerui <xen0n@gentoo.org> (2022-11-01)
+# qtwebengine isn't available on loong yet
+webengine
+
+# Unmask the flag which corresponds to ARCH.
+-loong
+
+# Unmask systemd
+-systemd
+
+# Things we actually can support
+-input_devices_synaptics
+
+# Things without support yet
+java
+luajittex
+lua_single_target_luajit
+lua_targets_luajit
+mono
+ocamlopt
+opencl
+valgrind
+
+# Temporarily masked during initial keywording
+audit
+doc
+efl
+elogind
+emacs
+fam
+gtk4
+gtk-doc
+kde
+latex
+ldap
+mpi
+sctp
+systemtap
+tk
+tpm
+xemacs
+
+# Things not supposed to ever get support
+video_cards_glint

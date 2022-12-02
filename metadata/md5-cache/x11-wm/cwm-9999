@@ -1,0 +1,13 @@
+BDEPEND=sys-devel/bison virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DEPEND=x11-libs/libX11 x11-libs/libXft x11-libs/libXrandr
+DESCRIPTION=OpenBSD fork of calmwm, a clean and lightweight window manager
+EAPI=8
+HOMEPAGE=https://github.com/leahneukirchen/cwm https://www.openbsd.org/cgi-bin/cvsweb/xenocara/app/cwm/
+INHERIT=desktop toolchain-funcs git-r3
+LICENSE=ISC
+PROPERTIES=live
+RDEPEND=x11-libs/libX11 x11-libs/libXft x11-libs/libXrandr
+SLOT=0
+_eclasses_=desktop	7eb20ad915a0a318176d51bc2508ff5c	git-r3	2347f8fe2d392b2a091191f94be37e6f	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144
+_md5_=1aa70dd648b9592a684da3d1a5766831

@@ -1,0 +1,12 @@
+BDEPEND=>=dev-lang/go-1.18 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install prepare test unpack
+DESCRIPTION=A set of tools that analyzes text to determine type of license
+EAPI=7
+HOMEPAGE=https://github.com/google/licenseclassifier
+INHERIT=go-module git-r3
+LICENSE=Apache-2.0 MIT
+PROPERTIES=live
+RESTRICT=strip
+SLOT=0
+_eclasses_=git-r3	2347f8fe2d392b2a091191f94be37e6f	go-module	4c4b34f361efda91762ffeda8f632c02
+_md5_=5ab53227a4a22f215df9c3f367f3eb16

@@ -1,0 +1,12 @@
+BDEPEND=>=dev-lang/go-1.18 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DESCRIPTION=A command line interface for packages.gentoo.org
+EAPI=7
+HOMEPAGE=https://github.com/arzano/pgo
+INHERIT=go-module git-r3
+LICENSE=BSD-2
+PROPERTIES=live
+RESTRICT=strip
+SLOT=0
+_eclasses_=git-r3	2347f8fe2d392b2a091191f94be37e6f	go-module	4c4b34f361efda91762ffeda8f632c02
+_md5_=c92a30add6a8f25f88c874d2d7959737
