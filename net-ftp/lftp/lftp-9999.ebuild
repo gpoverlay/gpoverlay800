@@ -1,17 +1,17 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 inherit autotools git-r3 libtool xdg-utils
 
 DESCRIPTION="A sophisticated ftp/sftp/http/https/torrent client and file transfer program"
-HOMEPAGE="https://lftp.tech/"
+HOMEPAGE="http://lftp.yar.ru/"
 EGIT_REPO_URI="https://github.com/lavv17/lftp"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="convert-mozilla-cookies +gnutls idn ipv6 libressl nls socks5 +ssl verify-file"
+IUSE="convert-mozilla-cookies +gnutls idn ipv6 nls socks5 +ssl verify-file"
 
 RDEPEND="
 	>=sys-libs/ncurses-5.1:=
@@ -26,10 +26,7 @@ RDEPEND="
 	)
 	ssl? (
 		gnutls? ( >=net-libs/gnutls-1.2.3:0= )
-		!gnutls? (
-			!libressl? ( dev-libs/openssl:0= )
-			libressl? ( dev-libs/libressl:0= )
-		)
+		!gnutls? ( dev-libs/openssl:0= )
 	)
 	verify-file? (
 		dev-perl/String-CRC32
@@ -63,6 +60,9 @@ PATCHES=(
 src_prepare() {
 	default
 
+	# bug #875692
+	sed -e '/#include/s/cmath/math.h/' -i trio/*.c || die
+
 	gnulib-tool --update || die
 
 	chmod +x build-aux/git-version-gen || die
@@ -77,7 +77,7 @@ src_configure() {
 		$(use_enable nls) \
 		$(use_with idn libidn2) \
 		$(use_with socks5 socksdante "${EPREFIX}"/usr) \
-		$(usex ssl "$(use_with !gnutls openssl ${EPREFIX}/usr)" '--without-openssl') \
+		$(usex ssl "$(use_with !gnutls openssl "${EPREFIX}"/usr)" '--without-openssl') \
 		$(usex ssl "$(use_with gnutls)" '--without-gnutls') \
 		--enable-packager-mode \
 		--sysconfdir="${EPREFIX}"/etc/${PN} \

@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -22,6 +22,8 @@ SLOT="0"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+PATCHES=( "${FILESDIR}/Fix-5.11-build.patch" )
+
 pkg_setup() {
 	local CONFIG_CHECK="FTRACE KPROBES PCI_QUIRKS KALLSYMS FUNCTION_TRACER"
 	linux-mod_pkg_setup
@@ -29,9 +31,7 @@ pkg_setup() {
 
 src_compile() {
 	set_arch_to_kernel
-	emake \
-		DESTDIR="${ED}" \
-		INSTALL_MOD_PATH="${ED}"
+	default
 }
 
 src_install() {

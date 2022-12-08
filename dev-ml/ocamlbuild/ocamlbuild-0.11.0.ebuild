@@ -14,12 +14,17 @@ IUSE="+ocamlopt test"
 RESTRICT="!test? ( test )"
 
 # does not compile with ocaml-4.09 (bug # 708696 and #708872)
-DEPEND="<dev-lang/ocaml-4.09:=[ocamlopt?]"
-RDEPEND="${DEPEND}
-	!<dev-ml/findlib-1.6.1-r1
-"
-DEPEND="${DEPEND}
+RDEPEND="<dev-lang/ocaml-4.09:=[ocamlopt?]"
+DEPEND="${RDEPEND}
 	test? ( dev-ml/findlib )"
+
+src_prepare() {
+	sed -i \
+		-e "/package_exists/s:camlp4.macro:xxxxxx:" \
+		-e "/package_exists/s:menhirLib:xxxxxx:" \
+		testsuite/external.ml || die
+	default
+}
 
 src_configure() {
 	emake -f configure.make Makefile.config \
@@ -29,6 +34,11 @@ src_configure() {
 		OCAML_NATIVE=$(usex ocamlopt true false) \
 		OCAML_NATIVE_TOOLS=$(usex ocamlopt true false) \
 		NATDYNLINK=$(usex ocamlopt true false)
+}
+
+src_compile() {
+	emake src/ocamlbuild_config.cmo
+	default
 }
 
 src_install() {

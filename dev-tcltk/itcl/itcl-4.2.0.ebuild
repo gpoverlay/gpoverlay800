@@ -3,8 +3,6 @@
 
 EAPI=7
 
-inherit eutils multilib
-
 MY_P="${PN}${PV}"
 
 DESCRIPTION="Object Oriented Enhancements for Tcl/Tk"
@@ -13,7 +11,7 @@ SRC_URI="mirror://sourceforge/project/incrtcl/%5Bincr%20Tcl_Tk%5D-4-source/itcl%
 
 SLOT="0"
 LICENSE="BSD"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm64 ~ia64 ppc sparc x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=dev-lang/tcl-8.6:0="

@@ -1,8 +1,8 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit autotools python-any-r1
 
@@ -24,7 +24,8 @@ RDEPEND="dev-db/sqlite:3
 	sys-apps/util-linux
 	boost? ( dev-libs/boost )
 	opencc? ( app-i18n/opencc:= )"
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	${PYTHON_DEPS}
 	sys-devel/autoconf-archive
 	doc? ( app-doc/doxygen )"

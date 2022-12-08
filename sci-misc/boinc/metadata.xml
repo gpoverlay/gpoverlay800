@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="project">
 		<email>sci@gentoo.org</email>
 		<name>Gentoo Science Project</name>
 	</maintainer>
-	<maintainer type="person">
+	<maintainer type="person" proxied="yes">
 		<email>sven.eden@prydeworx.com</email>
 		<name>Sven Eden</name>
 	</maintainer>
-	<maintainer type="project">
+	<maintainer type="project" proxied="proxy">
 		<email>proxy-maint@gentoo.org</email>
 		<name>Proxy Maintainers</name>
 	</maintainer>
@@ -23,6 +23,7 @@
 			NOTE: works only for subset of nvidia graphic cards so make sure your card
 			is supported before opening a bug about it.
 		</flag>
+		<flag name="opencl">Use OpenCL to enable computations using your GPU.</flag>
 	</use>
 	<upstream>
 		<remote-id type="github">BOINC/boinc</remote-id>

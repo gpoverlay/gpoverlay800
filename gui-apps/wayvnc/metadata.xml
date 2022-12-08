@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
     <longdescription>
         VNC server for wlroots based Wayland compositors.
@@ -9,14 +9,7 @@
         headless one, so it is also possible to run wayvnc
         without a physical display attached.
     </longdescription>
-    <maintainer type="person">
-        <email>gentoo@aisha.cc</email>
-        <name>Aisha Tammy</name>
-    </maintainer>
-    <maintainer type="project">
-        <email>proxy-maint@gentoo.org</email>
-        <name>Proxy Maintainers</name>
-    </maintainer>
+    <!-- maintainer-needed -->
     <use>
       <flag name="gbm">enable GPU-side screencopy (experimental)</flag>
       <flag name="tracing">Trace kernel and memory calls</flag>

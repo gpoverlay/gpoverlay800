@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{8..11} )
 
 if [[ ${PV} == 9999 ]] ; then
 	inherit git-r3
@@ -15,12 +15,13 @@ fi
 inherit check-reqs cmake multiprocessing python-single-r1
 
 DESCRIPTION="C++ runtime system for parallel and distributed applications"
-HOMEPAGE="https://stellar.cct.lsu.edu/tag/hpx/"
+HOMEPAGE="https://hpx.stellar-group.org/"
 
 SLOT="0"
 LICENSE="Boost-1.0"
-IUSE="doc examples jemalloc mpi papi +perftools tbb test"
-RESTRICT="!test? ( test )"
+IUSE="examples jemalloc mpi papi +perftools tbb zlib"
+# tests fail to compile
+RESTRICT="test"
 
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
@@ -29,26 +30,18 @@ REQUIRED_USE="
 
 BDEPEND="
 	virtual/pkgconfig
-	doc? (
-		${PYTHON_DEPS}
-		app-doc/doxygen
-		$(python_gen_cond_dep '
-			dev-python/sphinx[${PYTHON_MULTI_USEDEP}]
-			dev-python/sphinx_rtd_theme[${PYTHON_MULTI_USEDEP}]
-			>=dev-python/breathe-4.22[${PYTHON_MULTI_USEDEP}]
-		')
-	)
-	test? ( ${PYTHON_DEPS} )
 "
 RDEPEND="
 	${PYTHON_DEPS}
+	>=dev-cpp/asio-1.12.0
 	dev-libs/boost:=
-	sys-apps/hwloc
-	sys-libs/zlib
+	sys-apps/hwloc:=
+	jemalloc? ( dev-libs/jemalloc:= )
 	mpi? ( virtual/mpi )
 	papi? ( dev-libs/papi )
-	perftools? ( dev-util/google-perftools )
-	tbb? ( dev-cpp/tbb )
+	perftools? ( dev-util/google-perftools:= )
+	tbb? ( dev-cpp/tbb:= )
+	zlib? ( sys-libs/zlib )
 "
 DEPEND="${RDEPEND}"
 
@@ -77,11 +70,12 @@ pkg_setup() {
 src_configure() {
 	local mycmakeargs=(
 		-DHPX_WITH_EXAMPLES=OFF
-		-DHPX_WITH_DOCUMENTATION=$(usex doc)
+		-DHPX_WITH_DOCUMENTATION=OFF
 		-DHPX_WITH_PARCELPORT_MPI=$(usex mpi)
 		-DHPX_WITH_PAPI=$(usex papi)
 		-DHPX_WITH_GOOGLE_PERFTOOLS=$(usex perftools)
-		-DBUILD_TESTING=$(usex test)
+		-DHPX_WITH_COMPRESSION_ZLIB=$(usex zlib)
+		-DHPX_WITH_TESTS=OFF
 	)
 	if use jemalloc; then
 		mycmakeargs+=( -DHPX_WITH_MALLOC=jemalloc )
@@ -98,12 +92,6 @@ src_configure() {
 
 src_compile() {
 	cmake_src_compile
-	use test && cmake_build tests
-}
-
-src_test() {
-	# avoid over-suscribing
-	cmake_src_test -j1
 }
 
 src_install() {

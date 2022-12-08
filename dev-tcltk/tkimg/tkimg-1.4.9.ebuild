@@ -1,18 +1,19 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit autotools eutils multilib prefix toolchain-funcs virtualx
+inherit autotools edos2unix prefix toolchain-funcs
 
 MYP=Img-${PV}-Source
 
 DESCRIPTION="Adds a lot of image formats to Tcl/Tk"
 HOMEPAGE="http://tkimg.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}/1.4/${PN}%20${PV}/${MYP}.tar.gz
+SRC_URI="mirror://sourceforge/${PN}/${PN}/$(ver_cut 1-2)/${PN}%20${PV}/${MYP}.tar.gz
 	https://dev.gentoo.org/~tupone/distfiles/${PN}-1.4.7-patchset-1.tar.xz"
-SLOT="0"
+
 LICENSE="BSD"
+SLOT="0"
 KEYWORDS="amd64 ppc x86 ~amd64-linux ~x86-linux"
 IUSE="doc test static-libs"
 
@@ -59,15 +60,16 @@ src_prepare() {
 		libtiff/tifftclStubInit.c \
 		tiff/tiff.c \
 		jpeg/jpeg.c
-	default
-	find . -name configure -delete
 
-	find compat/{libjpeg,libpng,zlib,libtiff} -delete
+	default
+
+	find . -name configure -delete || die
+	find compat/{libjpeg,libpng,zlib,libtiff} -delete || die
 
 	eautoreconf
 	for dir in zlib libpng libtiff libjpeg base bmp gif ico jpeg pcx pixmap png\
 		ppm ps sgi sun tga tiff window xbm xpm dted raw flir ; do
-		(cd $dir; eautoreconf)
+		(cd ${dir}; eautoreconf)
 	done
 
 	eprefixify */*.h
@@ -88,7 +90,7 @@ src_install() {
 
 	# Make library links
 	for l in "${ED}"/usr/lib*/Img*/*tcl*.so; do
-		bl=$(basename $l)
+		bl=$(basename ${l})
 		dosym Img${PV}/${bl} /usr/$(get_libdir)/${bl}
 	done
 

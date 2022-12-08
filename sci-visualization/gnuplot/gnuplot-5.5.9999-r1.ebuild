@@ -1,11 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-LUA_COMPAT=( lua5-{1,2,3} )
+LUA_COMPAT=( lua5-{1,2,3,4} )
+WX_GTK_VER="3.0-gtk3"
 
-inherit autotools flag-o-matic lua-single readme.gentoo-r1 toolchain-funcs wxwidgets
+inherit autotools lua-single readme.gentoo-r1 toolchain-funcs wxwidgets
 
 DESCRIPTION="Command-line driven interactive plotting program"
 HOMEPAGE="http://www.gnuplot.info/"
@@ -27,7 +28,9 @@ S="${WORKDIR}/${MY_P}"
 LICENSE="gnuplot"
 SLOT="0"
 IUSE="aqua bitmap cairo doc examples +gd ggi latex libcaca libcerf lua qt5 readline regis wxwidgets X"
-REQUIRED_USE="lua? ( ${LUA_REQUIRED_USE} )"
+REQUIRED_USE="
+	doc? ( gd )
+	lua? ( ${LUA_REQUIRED_USE} )"
 
 RDEPEND="
 	cairo? (
@@ -52,7 +55,7 @@ RDEPEND="
 	readline? ( sys-libs/readline:0= )
 	libcerf? ( sci-libs/libcerf )
 	wxwidgets? (
-		x11-libs/wxGTK:3.0-gtk3[X]
+		x11-libs/wxGTK:${WX_GTK_VER}[X]
 		x11-libs/cairo
 		x11-libs/pango
 		x11-libs/gtk+:3 )
@@ -66,16 +69,17 @@ BDEPEND="
 		virtual/latex-base
 		dev-texlive/texlive-latexextra
 		dev-texlive/texlive-langgreek
+		dev-texlive/texlive-mathscience
 		app-text/ghostscript-gpl )
 	qt5? ( dev-qt/linguist-tools:5 )"
 
+IDEPEND="latex? ( virtual/latex-base )"
+
 GP_VERSION="${PV%.*}"
-E_SITEFILE="lisp/50${PN}-gentoo.el"
 TEXMF="${EPREFIX}/usr/share/texmf-site"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-5.0.1-fix-underlinking.patch
-	"${FILESDIR}"/${PN}-5.0.6-no-picins.patch
+	"${FILESDIR}"/${PN}-5.5-no-picins.patch
 )
 
 pkg_setup() {
@@ -112,16 +116,11 @@ src_configure() {
 		sed -i -e '/SUBDIRS/s/LaTeX//' share/Makefile.in || die
 	fi
 
-	if use wxwidgets; then
-		WX_GTK_VER="3.0-gtk3"
-		setup-wxwidgets
-	fi
+	use wxwidgets && setup-wxwidgets
 
 	tc-export CC CXX			#453174
 	tc-export_build_env BUILD_CC
 	export CC_FOR_BUILD=${BUILD_CC}
-
-	use qt5 && append-cxxflags -std=c++11
 
 	econf \
 		--with-texdir="${TEXMF}/tex/latex/${PN}" \
@@ -149,8 +148,6 @@ src_compile() {
 	emake all
 
 	if use doc; then
-		# Avoid sandbox violation in epstopdf/ghostscript
-		addpredict /var/cache/fontconfig
 		if use cairo; then
 			emake -C docs pdf
 		else
@@ -183,8 +180,8 @@ src_install() {
 		# Demo files
 		insinto /usr/share/${PN}/${GP_VERSION}
 		doins -r demo
-		rm -f "${ED}"/usr/share/${PN}/${GP_VERSION}/demo/Makefile*
-		rm -f "${ED}"/usr/share/${PN}/${GP_VERSION}/demo/binary*
+		rm "${ED}"/usr/share/${PN}/${GP_VERSION}/demo/binary{1,2,3} || die
+		rm "${ED}"/usr/share/${PN}/${GP_VERSION}/demo/plugin/*.{o,so} || die
 	fi
 
 	if use doc; then

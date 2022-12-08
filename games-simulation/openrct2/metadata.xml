@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
 		<email>conikost@gentoo.org</email>
@@ -15,7 +15,6 @@
 		sandbox allows the player to build a more flexible park with optionally no restrictions or finance.
 	</longdescription>
 	<use>
-		<flag name="lightfx">Enables LightFX for better lightning effects.</flag>
 		<flag name="scripting">Enable the <pkg>dev-lang/duktape</pkg> scripting engine for executing user scripts.</flag>
 	</use>
 	<upstream>

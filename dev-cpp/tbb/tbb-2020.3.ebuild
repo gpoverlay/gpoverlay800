@@ -1,20 +1,20 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit eutils flag-o-matic multilib-minimal multilib toolchain-funcs
+inherit flag-o-matic multilib-minimal multilib toolchain-funcs
 
 PV1="$(ver_cut 1)"
 PV2="$(ver_cut 2)"
 MY_PV="${PV1}_U${PV2}"
 
 DESCRIPTION="High level abstract threading library"
-HOMEPAGE="https://www.threadingbuildingblocks.org"
+HOMEPAGE="https://github.com/oneapi-src/oneTBB"
 SRC_URI="https://github.com/intel/${PN}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 ~riscv ~sparc x86 ~amd64-linux ~x86-linux"
 IUSE="debug examples"
 
 DEPEND=""
@@ -142,10 +142,9 @@ multilib_src_install_all() {
 	einstalldocs
 
 	if use examples ; then
-		insinto /usr/share/doc/${PF}/examples/build
-		doins build/*.inc
-		insinto /usr/share/doc/${PF}/examples
-		doins -r examples
-		docompress -x "/usr/share/doc/${PF}/examples"
+		dodoc -r examples
+		docinto examples/build
+		dodoc build/*.inc
+		docompress -x /usr/share/doc/${PF}/examples
 	fi
 }

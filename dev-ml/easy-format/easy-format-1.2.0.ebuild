@@ -1,18 +1,17 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 inherit findlib
 
 DESCRIPTION="Pretty-printing library for OCaml"
-HOMEPAGE="https://github.com/mjambon/easy-format"
-SRC_URI="https://github.com/mjambon/easy-format/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/ocaml-community/easy-format"
+SRC_URI="https://github.com/ocaml-community/easy-format/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 SLOT="0/${PV}"
 LICENSE="BSD"
 KEYWORDS="~amd64"
-
 IUSE="examples +ocamlopt"
 
 RDEPEND="dev-lang/ocaml:=[ocamlopt?]"

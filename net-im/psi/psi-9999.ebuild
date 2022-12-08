@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 PLOCALES="be bg ca cs de el en eo es et fa fi fr he hu it ja kk mk nl pl pt_BR pt ru sk sl sr@latin sv sw uk ur_PK vi zh_CN zh_TW"
 PLOCALE_BACKUP="en"
 
-inherit git-r3 cmake l10n qmake-utils xdg
+inherit git-r3 cmake plocale qmake-utils xdg
 
 DESCRIPTION="Qt XMPP client"
 HOMEPAGE="https://psi-im.org"
@@ -17,7 +17,7 @@ EGIT_REPO_URI="${PSI_URI}/${PN}.git"
 PSI_LANGS_URI="${PSI_URI}/psi-l10n.git"
 PSI_PLUS_LANGS_URI="${PSI_PLUS_URI}/psi-plus-l10n.git"
 EGIT_MIN_CLONE_TYPE="single"
-LICENSE="GPL-2"
+LICENSE="GPL-2 iconsets? ( all-rights-reserved )"
 SLOT="0"
 KEYWORDS=""
 IUSE="aspell crypt dbus debug doc enchant extras +hunspell iconsets keyring webengine xscreensaver"
@@ -30,7 +30,7 @@ REQUIRED_USE="
 BDEPEND="
 	dev-qt/linguist-tools:5
 	virtual/pkgconfig
-	doc? ( app-doc/doxygen )
+	doc? ( app-doc/doxygen[dot] )
 	extras? ( >=sys-devel/qconf-2.4 )
 "
 DEPEND="
@@ -154,7 +154,7 @@ src_install() {
 		"${mylrelease}" "translations/${PN}_${1}.ts" || die "lrelease ${1} failed"
 		doins "translations/${PN}_${1}.qm"
 	}
-	l10n_for_each_locale_do install_locale
+	plocale_for_each_locale install_locale
 }
 
 pkg_postinst() {

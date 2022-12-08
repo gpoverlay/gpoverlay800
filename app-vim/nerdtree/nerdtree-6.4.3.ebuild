@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -10,7 +10,7 @@ if [[ ${PV} == "9999" ]] ; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/scrooloose/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~x64-macos"
+	KEYWORDS="amd64 x86 ~x64-macos"
 fi
 
 DESCRIPTION="vim plugin: A tree explorer plugin for navigating the filesystem"
@@ -19,7 +19,4 @@ LICENSE="WTFPL-2"
 
 VIM_PLUGIN_HELPFILES="NERD_tree"
 
-src_prepare() {
-	rm LICENCE screenshot.png _config.yml || die
-	default
-}
+DOCS=( CHANGELOG.md README.markdown )

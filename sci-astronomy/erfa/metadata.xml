@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="project">
     <email>sci-astronomy@gentoo.org</email>
@@ -10,7 +10,7 @@
   library containing key algorithms for astronomy, and is based on
   the SOFA library published by the International Astronomical Union
   (IAU).
-</longdescription>
+  </longdescription>
   <upstream>
     <remote-id type="github">liberfa/erfa</remote-id>
   </upstream>

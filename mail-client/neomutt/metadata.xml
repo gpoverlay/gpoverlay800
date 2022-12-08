@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
 		<email>nicolasbock@gentoo.org</email>
 		<name>Nicolas Bock</name>
 	</maintainer>
 	<use>
+		<flag name="autocrypt">Enable autocrypt.org support</flag>
 		<flag name="berkdb">Enable BDB (Berkley DB) backend for header
 			caching</flag>
 		<flag name="gdbm">Enable GDBM (GNU dbm) backend for header
@@ -26,6 +27,9 @@
 			traditional/inline PGP</flag>
 		<flag name="smime-classic">Build classic-smime backend to support
 			S/MIME</flag>
+		<flag name="lz4">Add lz4 support for header cache compression</flag>
+		<flag name="zlib">Add zlib support for header cache compression</flag>
+		<flag name="zstd">Add zstd support for header cache compression</flag>
 	</use>
 	<upstream>
 		<remote-id type="github">neomutt/neomutt</remote-id>

@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
-		<email>gentoo@seichter.de</email>
-		<name>Ralph Seichter</name>
-	</maintainer>
-	<maintainer type="person">
-		<email>dilfridge@gentoo.org</email>
-		<name>Andreas K. Huettel</name>
-	</maintainer>
+	<!-- maintainer-needed -->
 	<longdescription lang="en">
 		Fangfrisch (German for "freshly caught") is a sibling of the
 		Clam Anti-Virus freshclam utility. It allows downloading virus
@@ -16,6 +9,7 @@
 		Sanesecurity, URLhaus and others. Fangfrisch was designed with
 		security in mind, to be run by an unprivileged user only.
 	</longdescription>
+	<stabilize-allarches/>
 	<upstream>
 		<remote-id type="github">rseichter/fangfrisch</remote-id>
 		<remote-id type="pypi">fangfrisch</remote-id>

@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -13,7 +13,7 @@ if [[ ${PV} == "9999" ]] ; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/idanarye/${MY_PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 	S="${WORKDIR}/${MY_P}"
 fi
 
@@ -25,7 +25,4 @@ RDEPEND="app-vim/fugitive"
 
 VIM_PLUGIN_HELPFILES="${PN}"
 
-src_prepare() {
-	rm README.md || die
-	default
-}
+DOCS=( CHANGELOG.md README.md )

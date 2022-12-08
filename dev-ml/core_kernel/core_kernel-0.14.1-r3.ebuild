@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,7 +11,7 @@ SRC_URI="https://github.com/janestreet/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.g
 
 LICENSE="LGPL-2.1-with-linking-exception"
 SLOT="0/${PV}"
-KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+KEYWORDS="amd64 arm arm64 ~ppc ppc64 x86"
 IUSE="+ocamlopt"
 
 # Wants quickcheck_deprecated for now
@@ -19,16 +19,17 @@ RESTRICT="test"
 
 RDEPEND="
 	dev-lang/ocaml:=
+	<dev-ml/jst-config-0.15.0
 	dev-ml/base:=
-	dev-ml/base_bigstring:=
+	=dev-ml/base_bigstring-0.14*:=
 	dev-ml/base_quickcheck:=
 	dev-ml/bin_prot:=
 	dev-ml/fieldslib:=
 	dev-ml/jane-street-headers:=
-	dev-ml/jst-config:=
-	dev-ml/ppx_assert:=
-	dev-ml/ppx_base:=
-	dev-ml/ppx_hash:=
+	dev-ml/ocaml-migrate-parsetree:=
+	=dev-ml/ppx_assert-0.14*:=
+	=dev-ml/ppx_base-0.14*:=
+	=dev-ml/ppx_hash-0.14*:=
 	dev-ml/ppx_inline_test:=
 	dev-ml/ppx_jane:=
 	dev-ml/ppx_sexp_conv:=
@@ -39,6 +40,5 @@ RDEPEND="
 	dev-ml/time_now:=
 	dev-ml/typerep:=
 	dev-ml/variantslib:=
-	dev-ml/ocaml-migrate-parsetree:=
 "
 DEPEND="${RDEPEND}"

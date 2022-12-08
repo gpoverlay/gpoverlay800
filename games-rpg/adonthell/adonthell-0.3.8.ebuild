@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python3_{6,7,8} )
 
+PYTHON_COMPAT=( python3_{8..10} )
 inherit autotools python-single-r1
 
 DESCRIPTION="Roleplaying game engine"
@@ -38,7 +38,8 @@ BDEPEND="
 DOCS=( AUTHORS NEWBIE NEWS README )
 
 PATCHES=(
-	"${FILESDIR}/${P}-ar.patch"
+	"${FILESDIR}"/${P}-ar.patch
+	"${FILESDIR}"/${P}-python3.10.patch
 )
 
 src_prepare() {

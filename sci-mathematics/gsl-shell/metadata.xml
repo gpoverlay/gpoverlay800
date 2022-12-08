@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="project">
     <email>sci-mathematics@gentoo.org</email>
@@ -13,7 +13,7 @@ GSL shell is not just a wrapper over the C API of GSL
 but does offer much more simple and expressive way to use GSL.
 The objective of GSL shell is to give the user the power
 of easily access GSL functions without having to write a complete C application.
-</longdescription>
+  </longdescription>
   <use>
     <flag name="fox">Build a <pkg>x11-libs/fox</pkg> GUI</flag>
   </use>

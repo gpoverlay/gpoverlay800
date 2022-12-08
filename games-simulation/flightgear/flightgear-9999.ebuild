@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit cmake bash-completion-r1 flag-o-matic toolchain-funcs git-r3
+inherit cmake bash-completion-r1 toolchain-funcs git-r3
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="https://www.flightgear.org/"
@@ -26,6 +26,7 @@ COMMON_DEPEND="
 	dev-games/openscenegraph[jpeg,png]
 	~dev-games/simgear-${PV}[gdal=]
 	media-libs/openal
+	>=media-libs/plib-1.8.5
 	>=media-libs/speex-1.2.0:0
 	media-libs/speexdsp:0
 	media-sound/gsm
@@ -53,9 +54,7 @@ COMMON_DEPEND="
 "
 # libXi and libXmu are build-only-deps according to FindGLUT.cmake
 DEPEND="${COMMON_DEPEND}
-	>=dev-libs/boost-1.44
-	>=media-libs/plib-1.8.5
-	qt5? ( >=dev-qt/linguist-tools-5.7.1:5 )
+	dev-libs/boost
 	utils? (
 		x11-libs/libXi
 		x11-libs/libXmu
@@ -64,6 +63,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	~games-simulation/${PN}-data-${PV}
 "
+BDEPEND="qt5? ( >=dev-qt/linguist-tools-5.7.1:5 )"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2020.3.5-cmake.patch"
@@ -72,7 +72,11 @@ PATCHES=(
 DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
 pkg_pretend() {
-	use openmp && tc-check-openmp
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
+pkg_setup() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
 src_configure() {

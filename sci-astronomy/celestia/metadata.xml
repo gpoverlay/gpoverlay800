@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="project">
     <email>sci-astronomy@gentoo.org</email>
@@ -14,8 +14,9 @@
   to spacecraft a few meters across. A 'point-and-goto' interface
   is used to navigate through the universe to the object you
   want to visit.
-</longdescription>
+  </longdescription>
   <upstream>
+    <remote-id type="github">CelestiaProject/Celestia</remote-id>
     <remote-id type="sourceforge">celestia</remote-id>
   </upstream>
 </pkgmetadata>

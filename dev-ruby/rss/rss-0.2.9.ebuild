@@ -8,11 +8,11 @@ RUBY_FAKEGEM_EXTRADOC="NEWS.md README.md"
 
 inherit ruby-fakegem
 
-DESCRIPTION="Family of libraries that support various formats of XML feeds."
+DESCRIPTION="Family of libraries that support various formats of XML feeds"
 HOMEPAGE="https://github.com/ruby/rss"
 
 LICENSE="BSD-2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 IUSE="test"
 

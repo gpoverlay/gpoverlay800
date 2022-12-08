@@ -1,8 +1,8 @@
-# Copyright 2010-2020 Gentoo Authors
+# Copyright 2010-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-PYTHON_COMPAT=(python{3_7,3_8,3_9})
+EAPI="8"
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit elisp-common multiprocessing python-any-r1 toolchain-funcs
 
@@ -41,7 +41,7 @@ fi
 # japanese-usage-dictionary: BSD-2
 LICENSE="BSD BSD-2 ipadic public-domain unicode"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64 ~x86"
+KEYWORDS="amd64 ~arm64 ~ppc64 x86"
 IUSE="debug emacs fcitx4 +gui ibus renderer test"
 REQUIRED_USE="|| ( emacs fcitx4 ibus )"
 RESTRICT="!test? ( test )"
@@ -53,7 +53,7 @@ BDEPEND="$(python_gen_any_dep 'dev-python/six[${PYTHON_USEDEP}]')
 	virtual/pkgconfig
 	emacs? ( app-editors/emacs:* )
 	fcitx4? ( sys-devel/gettext )"
-DEPEND=">=dev-cpp/abseil-cpp-20200923[cxx17(+)]
+DEPEND="=dev-cpp/abseil-cpp-20200923*[cxx17(+)]
 	>=dev-libs/protobuf-3.0.0:=
 	fcitx4? (
 		app-i18n/fcitx:4
@@ -79,7 +79,7 @@ DEPEND=">=dev-cpp/abseil-cpp-20200923[cxx17(+)]
 		>=dev-cpp/gtest-1.8.0
 		dev-libs/jsoncpp
 	)"
-RDEPEND=">=dev-cpp/abseil-cpp-20200923[cxx17(+)]
+RDEPEND="=dev-cpp/abseil-cpp-20200923*[cxx17(+)]
 	>=dev-libs/protobuf-3.0.0:=
 	emacs? ( app-editors/emacs:* )
 	fcitx4? (
@@ -134,7 +134,7 @@ src_unpack() {
 
 		if use fcitx4; then
 			unpack fcitx-${PN}-${PV%%_p*}-${FCITX_MOZC_DATE}.tar.gz
-			mv mozc-${FCITX_MOZC_GIT_REVISION} fcitx-${PN}
+			mv mozc-${FCITX_MOZC_GIT_REVISION} fcitx-${PN} || die
 		fi
 	fi
 }
@@ -159,7 +159,7 @@ src_prepare() {
 	sed \
 		-e "s/def GypMain(options, unused_args):/def GypMain(options, gyp_args):/" \
 		-e "s/RunOrDie(gyp_command + gyp_options)/RunOrDie(gyp_command + gyp_options + gyp_args)/" \
-		-e "s/RunOrDie(\[ninja/&, '-j$(makeopts_jobs)', '-l$(makeopts_loadavg "${MAKEOPTS}" 0)', '-v'/" \
+		-e "s/RunOrDie(\[ninja/&, '-j$(makeopts_jobs "${MAKEOPTS}" 999)', '-l$(makeopts_loadavg "${MAKEOPTS}" 0)', '-v'/" \
 		-i build_mozc.py || die
 
 	local ar=($(tc-getAR))

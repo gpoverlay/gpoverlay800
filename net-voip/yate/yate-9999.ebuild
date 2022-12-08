@@ -11,7 +11,6 @@ HOMEPAGE="http://yate.null.ro/"
 if [[ ${PV} == 9999 ]] ; then
 	ESVN_REPO_URI="http://voip.null.ro/svn/yate/trunk"
 	inherit subversion
-	KEYWORDS=""
 else
 	SRC_URI="http://voip.null.ro/tarballs/${PN}6/${P}-1.tar.gz"
 	KEYWORDS="~amd64 ~arm ~x86"
@@ -33,7 +32,7 @@ RDEPEND="
 	spandsp? ( >=media-libs/spandsp-0.0.3 )
 	dahdi? ( net-misc/dahdi )
 "
-DEPEND="${DEPEND}"
+DEPEND="${RDEPEND}"
 BDEPEND="
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )

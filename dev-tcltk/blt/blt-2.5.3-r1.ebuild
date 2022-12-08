@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -16,11 +16,11 @@ SRC_URI="mirror://sourceforge/wize/${PN}-src-${PV}.zip
 IUSE="jpeg static-libs X"
 SLOT="0/${SHVER}"
 LICENSE="BSD"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 ~riscv ~s390 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 DEPEND="
 	dev-lang/tk:0=
-	jpeg? ( virtual/jpeg:0= )
+	jpeg? ( media-libs/libjpeg-turbo:0= )
 	X? ( x11-libs/libX11 )"
 RDEPEND="${DEPEND}"
 BDEPEND="app-arch/unzip"
@@ -55,6 +55,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-gentoo.patch
 	"${FILESDIR}"/${P}-darwin.patch
 	"${FILESDIR}"/${P}-gbsd.patch
+	"${FILESDIR}"/${P}-lto.patch
 )
 
 src_prepare() {
@@ -122,9 +123,11 @@ src_install() {
 	dodoc NEWS PROBLEMS README
 	docinto html
 	dodoc html/*.html
-	for f in `ls "${ED}"/usr/share/man/mann` ; do
-		mv "${ED}"/usr/share/man/mann/${f} "${ED}"/usr/share/man/mann/${f/.n/.nblt} || die
+	pushd "${ED}"/usr/share/man/mann
+	for f in * ; do
+		mv ${f} ${f/.n/.nblt} || die
 	done
+	popd
 
 	# fix for linking against shared lib with -lBLT or -lBLTlite
 	dosym libBLT${SHVER}$(get_libname) /usr/$(get_libdir)/libBLT$(get_libname)

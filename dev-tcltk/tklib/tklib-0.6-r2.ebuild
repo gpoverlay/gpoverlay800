@@ -1,15 +1,13 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
-inherit multilib
 
 CODE=6a397dec6188148cf6a6fe290cf2bd92a9190c42
 
 DESCRIPTION="Collection of utility modules for Tk, and a companion to Tcllib"
 HOMEPAGE="http://www.tcl.tk/software/tklib"
-SRC_URI="http://core.tcl.tk/tklib/raw/tklib-0.6.tar.bz2?name=${CODE} -> ${P}.tar.bz2"
+SRC_URI="http://core.tcl.tk/tklib/raw/${P}.tar.bz2?name=${CODE} -> ${P}.tar.bz2"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"

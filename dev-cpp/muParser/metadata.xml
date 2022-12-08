@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="project">
 		<email>sci-mathematics@gentoo.org</email>
@@ -14,4 +14,7 @@
 		<remote-id type="sourceforge">muparser</remote-id>
 		<remote-id type="github">beltoforion/muparser</remote-id>
 	</upstream>
+	<use>
+		<flag name="wchar">Add support for wide character (wchar_t)</flag>
+	</use>
 </pkgmetadata>

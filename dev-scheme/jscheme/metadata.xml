@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="project">
 		<email>scheme@gentoo.org</email>
@@ -9,7 +9,7 @@
 	JScheme is a dialect of Scheme with a very simple interface to Java, called
 	the Javadot notation . This notation provides a transparent access to all
 	Java classes, constructors, methods, and fields on the classpath.
-</longdescription>
+	</longdescription>
 	<upstream>
 		<remote-id type="sourceforge">jscheme</remote-id>
 	</upstream>

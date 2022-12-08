@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -10,8 +10,9 @@ MY_P="${PN}_complete_story_v${MY_P%_*}_build_${MY_P##*_}"
 MY_PN="Trine 2"
 
 DESCRIPTION="Sidescrolling game of action, puzzles and platforming, Complete Story edition"
-HOMEPAGE="http://www.trine2.com/"
+HOMEPAGE="https://www.trine2.com/"
 SRC_URI="${MY_P}_humble_linux_full.zip"
+
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
@@ -21,7 +22,7 @@ RESTRICT="bindist fetch splitdebug"
 QA_PREBUILT="opt/${PN}/${PN}*
 	opt/${PN}/lib/*"
 
-DEPEND="app-arch/unzip"
+BDEPEND="app-arch/unzip"
 
 RDEPEND="
 	media-gfx/nvidia-cg-toolkit[abi_x86_32]
@@ -31,7 +32,7 @@ RDEPEND="
 	>=media-libs/libvorbis-1.3[abi_x86_32]
 	>=media-libs/openal-1.15[abi_x86_32]
 	>=sys-devel/gcc-4.6[cxx]
-	>=sys-libs/glibc-2.15
+	>=sys-libs/glibc-2.15[stack-realign(-)]
 	sys-libs/zlib[abi_x86_32]
 	virtual/glu[abi_x86_32]
 	virtual/opengl[abi_x86_32]

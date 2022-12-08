@@ -1,12 +1,12 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{8..11} )
 CMAKE_MAKEFILE_GENERATOR="emake"
 
-inherit cmake python-single-r1 savedconfig
+inherit cmake cuda python-single-r1 savedconfig
 
 DESCRIPTION="Extensible Simulation Package for Research on Soft matter"
 HOMEPAGE="http://espressomd.org"
@@ -15,16 +15,18 @@ if [[ ${PV} = 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/${PN}md/${PN}.git"
 	EGIT_BRANCH="python"
 	inherit git-r3
-	KEYWORDS=""
 else
 	SRC_URI="https://github.com/${PN}md/${PN}/releases/download/${PV}/${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86 ~amd64-linux"
 fi
+S="${WORKDIR}/${PN}"
 
 LICENSE="GPL-3"
 SLOT="0"
 IUSE="cuda doc examples +fftw +hdf5 test"
-RESTRICT="!test? ( test )"
+
+# unittest_decorators not packaged
+RESTRICT="test"
 
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}"
@@ -32,23 +34,24 @@ REQUIRED_USE="
 RDEPEND="
 	${PYTHON_DEPS}
 	$(python_gen_cond_dep '
-		>=dev-python/cython-0.26.1[${PYTHON_MULTI_USEDEP}]
-		dev-python/numpy[${PYTHON_MULTI_USEDEP}]
+		>=dev-python/cython-0.26.1[${PYTHON_USEDEP}]
+		dev-python/numpy[${PYTHON_USEDEP}]
 	')
 	cuda? ( >=dev-util/nvidia-cuda-toolkit-4.2.9-r1 )
 	fftw? ( sci-libs/fftw:3.0 )
 	dev-libs/boost:=[mpi]
-	hdf5? ( sci-libs/hdf5:=[mpi] )"
+	hdf5? ( sci-libs/hdf5:=[mpi] )
+"
 
 DEPEND="${RDEPEND}
 	doc? (
 		app-doc/doxygen[dot]
 		dev-texlive/texlive-latexextra
-		virtual/latex-base )"
+		virtual/latex-base
+	)
+"
 
-DOCS=( AUTHORS NEWS README ChangeLog )
-
-S="${WORKDIR}/${PN}"
+DOCS=( AUTHORS NEWS Readme.md ChangeLog )
 
 src_prepare() {
 	use cuda && cuda_src_prepare
@@ -75,6 +78,10 @@ src_compile() {
 	[[ ${PV} = 9999 ]] && use doc && cmake_build ug dg tutorials
 }
 
+src_test() {
+	LD_PRELOAD="${BUILD_DIR}/src/core/Espresso_core.so" cmake_src_test
+}
+
 src_install() {
 	local i docdir="${S}"
 
@@ -86,12 +93,6 @@ src_install() {
 	save_config "${BUILD_DIR}/src/config/myconfig-final.hpp"
 
 	if use doc; then
-		[[ ${PV} = 9999 ]] && docdir="${BUILD_DIR}"
-		newdoc "${docdir}"/doc/dg/dg.pdf developer_guide.pdf
-		newdoc "${docdir}"/doc/ug/ug.pdf user_guide.pdf
-		for i in "${docdir}/doc/tutorials/python"/*/[0-9]*.pdf; do
-			newdoc "${i}" "tutorial_${i##*/}"
-		done
 		dodoc -r "${BUILD_DIR}/doc/doxygen/html"
 	fi
 

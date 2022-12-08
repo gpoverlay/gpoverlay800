@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
     <email>dilfridge@gentoo.org</email>
@@ -15,13 +15,19 @@
   scanning probe microscopy techniques (AFM, MFM, STM, NSOM), but
   generally it can be used for any other height field analysis or
   image analysis.
-</longdescription>
+  </longdescription>
   <use>
     <flag name="sourceview">
       Enable support for <pkg>x11-libs/gtksourceview</pkg>
     </flag>
     <flag name="fits">
       Enable FITS image import via <pkg>sci-libs/cfitsio</pkg>
+    </flag>
+    <flag name="jansson">
+      Enable JSON data manipulation via <pkg>dev-libs/jansson</pkg>
+    </flag>
+    <flag name="unique">
+      Enable remote control backend via <pkg>dev-libs/libunique</pkg>
     </flag>
   </use>
 </pkgmetadata>

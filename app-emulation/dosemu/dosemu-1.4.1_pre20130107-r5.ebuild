@@ -1,9 +1,9 @@
-# Copyright 2002-2020 Gentoo Authors
+# Copyright 2002-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
 
-inherit autotools eutils flag-o-matic pax-utils toolchain-funcs
+inherit autotools flag-o-matic pax-utils toolchain-funcs
 
 P_FD="dosemu-freedos-1.0-bin"
 COMMIT="15cfb41ff20a052769d753c3262c57ecb050ad71"
@@ -13,7 +13,7 @@ COMMIT="15cfb41ff20a052769d753c3262c57ecb050ad71"
 DESCRIPTION="DOS Emulator"
 HOMEPAGE="http://www.dosemu.org/"
 SRC_URI="mirror://sourceforge/dosemu/${P_FD}.tgz
-	https://dev.gentoo.org/~slyfox/distfiles/${P}.zip"
+	https://dev.gentoo.org/~sam/distfiles/${P}.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -109,7 +109,7 @@ src_configure() {
 
 src_compile() {
 	# src/makefile.common is written manually, uses AR=ar
-	emake AR=$(tc-getAR)
+	emake AR="$(tc-getAR)"
 }
 
 src_install() {

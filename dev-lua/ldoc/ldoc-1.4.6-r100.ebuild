@@ -9,11 +9,11 @@ inherit lua-single
 
 DESCRIPTION="A LuaDoc-compatible documentation generation system"
 HOMEPAGE="https://stevedonovan.github.io/ldoc/"
-SRC_URI="https://github.com/stevedonovan/LDoc/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/lunarmodules/LDoc/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 arm ppc ppc64 x86"
+KEYWORDS="amd64 arm ppc ppc64 ~riscv x86"
 
 REQUIRED_USE="${LUA_REQUIRED_USE}"
 

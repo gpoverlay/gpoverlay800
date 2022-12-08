@@ -1,16 +1,16 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="ssl"
 
 inherit distutils-r1 optfeature
 
 DESCRIPTION="Graphical front-end analysis console for the Prelude Framework"
 HOMEPAGE="https://www.prelude-siem.org"
-SRC_URI="https://www.prelude-siem.org/pkg/src/5.2.0/${P}.tar.gz"
+SRC_URI="https://www.prelude-siem.org/pkg/src/${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -23,7 +23,7 @@ RDEPEND=">=dev-libs/libprelude-5.2.0[python,${PYTHON_USEDEP}]
 	dev-python/Babel[${PYTHON_USEDEP}]
 	dev-python/croniter[${PYTHON_USEDEP}]
 	dev-python/gevent[${PYTHON_USEDEP}]
-	dev-python/lark-parser[${PYTHON_USEDEP}]
+	dev-python/lark[${PYTHON_USEDEP}]
 	dev-python/mako[${PYTHON_USEDEP}]
 	dev-python/python-dateutil[${PYTHON_USEDEP}]
 	dev-python/pytz[${PYTHON_USEDEP}]
@@ -48,5 +48,5 @@ src_install() {
 }
 
 pkg_postinst() {
-	optfeature "Asynchronous DNS" dev-python/twisted[${PYTHON_USEDEP}]
+	optfeature "Asynchronous DNS" dev-python/twisted
 }

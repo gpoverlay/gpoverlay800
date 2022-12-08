@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
 		<email>williamh@gentoo.org</email>
@@ -9,6 +9,7 @@
 		<email>conikost@gentoo.org</email>
 		<name>Conrad Kostecki</name>
 	</maintainer>
+	<stabilize-allarches/>
 	<longdescription>
 		An elegant, extensible, testing framework.
 		Ships with a large amount of useful asserts,
@@ -18,6 +19,6 @@
 		and unit, integration, and functional tests.
 	</longdescription>
 	<upstream>
-		<remote-id type="github">Olivine-Labs/busted</remote-id>
+		<remote-id type="github">lunarmodules/busted</remote-id>
 	</upstream>
 </pkgmetadata>

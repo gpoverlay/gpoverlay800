@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="project">
 		<email>ppc@gentoo.org</email>
-		<name>Gentoo Linux PowerPC Development</name>
+		<name>PowerPC architecture team</name>
 	</maintainer>
 	<use>
 		<flag name="ibam">Enable support for Intelligent Battery Monitoring</flag>

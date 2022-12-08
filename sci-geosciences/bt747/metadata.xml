@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="project">
     <email>sci-geosciences@gentoo.org</email>
@@ -14,7 +14,7 @@ BT747 is software that can:
   * Runs on Desktops (Windows, MacOSX, Linux flavors)
   * Configure MTK Chipset Based Devices and Loggers
   * Upload AGPS(EPO) data to MTK II Chipset Based Devices and Loggers
-</longdescription>
+  </longdescription>
   <upstream>
     <remote-id type="sourceforge">bt747</remote-id>
   </upstream>

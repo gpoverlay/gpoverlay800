@@ -1,12 +1,12 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit multilib versionator
+inherit desktop eapi7-ver multilib
 
 DESCRIPTION="Wolfram Player for the interactive Computable Document Format (CDF)"
-SRC_URI="WolframPlayer_12.2.0_LINUX.sh"
+SRC_URI="WolframPlayer_${PV}_LINUX.sh"
 HOMEPAGE="http://www.wolfram.com/cdf-player/"
 
 LICENSE="WolframCDFPlayer"
@@ -46,7 +46,7 @@ RDEPEND="
 
 # we need this a few times
 MPN="WolframPlayer"
-MPV=$(get_version_component_range 1-2)
+MPV=$(ver_cut 1-2)
 
 # we might as well list all files in all QA variables...
 QA_PREBUILT="opt/*"
@@ -70,12 +70,12 @@ src_install() {
 	dosym ../Wolfram/${MPN}/${MPV}/Executables/WolframPlayer opt/bin/WolframPlayer
 
 	# fix some embedded paths and install desktop files
-	insinto /usr/share/applications
+	local filename
 	for filename in $(find "${D}" -name "wolfram-cdf12.desktop") ; do
 		echo Fixing "${filename}"
 		sed -e "s:${S}::g" -e 's:^\t\t::g' -i "${filename}"
 		echo "Categories=Physics;Science;Engineering;2DGraphics;Graphics;" >> "${filename}"
-		doins "${filename}"
+		domenu "${filename}"
 	done
 
 	# install a wrapper

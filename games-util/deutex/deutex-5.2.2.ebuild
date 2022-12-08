@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit unpacker
 
@@ -11,12 +11,13 @@ SRC_URI="https://github.com/Doom-Utils/${PN}/releases/download/v${PV}/${P}.tar.z
 
 LICENSE="GPL-2+ LGPL-2+ HPND"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
-IUSE="man png"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+IUSE="man +png"
 
 DEPEND="png? ( media-libs/libpng:0= )"
 RDEPEND="${DEPEND}"
-BDEPEND="man? ( app-text/asciidoc )"
+BDEPEND="$(unpacker_src_uri_depends)
+	man? ( app-text/asciidoc )"
 
 src_configure() {
 	econf \

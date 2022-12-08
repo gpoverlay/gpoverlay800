@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit flag-o-matic ltprune toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Object-oriented Scientific Computing Library"
 HOMEPAGE="https://web.utk.edu/~asteine1/o2scl/"
@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="armadillo debug doc examples eigen fftw gsl hdf5 openmp readline static-libs"
 
 RDEPEND="
-	dev-libs/boost:0=
+	dev-libs/boost:=
 	>=sci-libs/gsl-2:0=
 	virtual/cblas:=
 	eigen? ( dev-cpp/eigen:3 )
@@ -55,7 +55,11 @@ src_configure() {
 
 src_install() {
 	default
-	use static-libs || prune_libtool_files
+
+	if ! use static-libs; then
+		find "${ED}" -name '*.la' -delete || die
+	fi
+
 	rm -r "${ED}"/usr/doc || die
 	if use doc; then
 		dodoc -r doc/o2scl/html

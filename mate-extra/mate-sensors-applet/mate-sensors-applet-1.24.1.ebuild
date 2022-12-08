@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,7 +8,7 @@ MATE_LA_PUNT="yes"
 inherit mate
 
 if [[ ${PV} != 9999 ]]; then
-	KEYWORDS="~amd64 ~arm ~x86"
+	KEYWORDS="amd64 ~arm ~loong ~riscv x86"
 fi
 
 DESCRIPTION="MATE panel applet to display readings from hardware sensors"
@@ -42,6 +42,10 @@ DEPEND="${COMMON_DEPEND}
 "
 
 PDEPEND="hddtemp? ( dbus? ( sys-fs/udisks:2 ) )"
+
+PATCHES=(
+	"${FILESDIR}/${PN}-1.24.1-dont-check-for-headers.patch"
+)
 
 src_configure() {
 	local udisks

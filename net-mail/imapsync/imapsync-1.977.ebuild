@@ -9,7 +9,7 @@ SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="WTFPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ppc x86"
 #IUSE="test" # not fully supported yet
 
 RDEPEND="
@@ -58,6 +58,7 @@ RDEPEND="
 	# JSON::WebToken
 	# JSON::WebToken::Crypt::RSA
 DEPEND="${RDEPEND}"
+BDEPEND="sys-apps/lsb-release"
 	#test? (
 	#	virtual/perl-Test
 	#	dev-perl/Test-Deep

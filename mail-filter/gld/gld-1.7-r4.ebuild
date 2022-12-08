@@ -1,25 +1,28 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
 
 inherit toolchain-funcs
 
-DESCRIPTION="A standalone anti-spam greylisting algorithm on top of Postfix"
-HOMEPAGE="http://www.gasmi.net/gld.html"
-SRC_URI="http://www.gasmi.net/down/${P}.tgz"
+DESCRIPTION="Standalone anti-spam greylisting algorithm on top of Postfix"
+HOMEPAGE="https://www.gasmi.net/gld.html"
+SRC_URI="https://www.gasmi.net/down/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
-IUSE="libressl postgres"
+KEYWORDS="amd64 ~ppc x86"
+IUSE="postgres"
 # Not adding a mysql USE flag. The package defaults to it, so we will too.
 DEPEND="sys-libs/zlib
-	!libressl? ( dev-libs/openssl:0= )
-	libressl? ( dev-libs/libressl )
+	dev-libs/openssl:0=
 	!postgres? ( dev-db/mysql-connector-c:0= )
 	postgres? ( dev-db/postgresql:*[server] )"
 RDEPEND="${DEPEND}"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.7-configure-strict-prototypes.patch
+)
 
 src_prepare() {
 	sed -i gld.conf \

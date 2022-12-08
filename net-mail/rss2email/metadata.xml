@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
 		<email>sping@gentoo.org</email>
@@ -11,4 +11,7 @@
 		list of XML newsfeeds (RSS or Atom) and get new items sent to
 		you by email.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">rss2email/rss2email</remote-id>
+	</upstream>
 </pkgmetadata>

@@ -11,7 +11,7 @@ SRC_URI="ftp://ftp.unidata.ucar.edu/pub/udunits/${P}.tar.gz"
 
 LICENSE="UCAR-BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~hppa ~mips ~ppc ~sparc x86 ~amd64-linux ~x86-linux"
 
 RDEPEND="dev-libs/expat"
 DEPEND="${RDEPEND}"
@@ -22,6 +22,12 @@ src_configure() {
 
 src_install() {
 	default
+
+	local i
+	for i in udunits2 udunits2-{accepted,base,common,derived,prefixes}; do
+		dosym ../../../udunits/"${i}".xml usr/share/doc/${PF}/html/"${i}".xml
+	done
+	rm "${ED}/usr/share/doc/${PF}/html/*.xml" || die
 
 	# no static archives
 	find "${ED}" -name '*.la' -delete || die

@@ -1,7 +1,8 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
+
 inherit desktop toolchain-funcs
 
 MY_PN=Nexuiz
@@ -14,7 +15,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~arm64 ~x86"
 IUSE="alsa dedicated maps opengl sdl"
 
 # no headers for libpng needed
@@ -87,7 +88,13 @@ src_prepare() {
 }
 
 src_compile() {
+	# Unset STRIP because the build system by default will not strip
+	# If users express a preference, this triggers strip
+	# bug #739294
+	unset STRIP
+
 	tc-export CC
+
 	if use opengl || ! use dedicated ; then
 		emake cl-${PN}
 		if use sdl ; then

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="project">
     <email>sci-physics@gentoo.org</email>
@@ -11,5 +11,5 @@
   It features an easy Fortran, C++, and Mathematica interface 
   to the scalar one-loop functions of FF and in addition provides 
   the 2-, 3-, and 4-point tensor coefficient functions.
-</longdescription>
+  </longdescription>
 </pkgmetadata>

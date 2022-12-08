@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="project">
     <email>sci@gentoo.org</email>
@@ -23,7 +23,7 @@
   equality constraints, modeling error of x coordinate of points
   (eg. zero-shift of instrument), handling series of datasets,
   automation of common tasks with scripts, and more.
-</longdescription>
+  </longdescription>
   <use>
     <flag name="nlopt">Enable optimization with <pkg>sci-libs/nlopt</pkg></flag>
   </use>

@@ -1,22 +1,23 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{7,8,9} )
 
 inherit cmake gnome2-utils python-single-r1 toolchain-funcs xdg-utils
 
 DESCRIPTION="A personal finance manager"
 HOMEPAGE="https://www.gnucash.org/"
 SRC_URI="https://github.com/Gnucash/${PN}/releases/download/${PV}/${P}.tar.bz2"
+SRC_URI+=" https://dev.gentoo.org/~sam/distfiles/${CATEGORY}/${PN}/${P}-Fix-build-with-glib-2.68.patch.xz"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~arm64 ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ~arm64 ~ppc ~ppc64 x86"
 
 IUSE="aqbanking debug doc examples gnome-keyring +gui mysql nls ofx postgres
-	  python quotes -register2 smartcard sqlite test"
+	  python quotes register2 smartcard sqlite test"
 RESTRICT="!test? ( test )"
 
 # Examples doesn't build unless GUI is also built
@@ -81,10 +82,6 @@ BDEPEND="
 	dev-lang/swig
 	dev-util/cmake
 	virtual/pkgconfig
-	|| (
-		>=sys-devel/gcc-8:*
-		>=sys-devel/clang-6:*
-	)
 "
 
 PDEPEND="doc? (
@@ -96,21 +93,10 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-3.2-no-gui.patch
 	"${FILESDIR}"/${PN}-3.8-examples-subdir.patch
 	"${FILESDIR}"/${PN}-3.8-exclude-license.patch
+	"${WORKDIR}"/${P}-Fix-build-with-glib-2.68.patch
 )
 
 S="${WORKDIR}/${PN}-$(ver_cut 1-2)"
-
-pkg_pretend() {
-	if tc-is-gcc; then
-		if [[ $(gcc-major-version) -lt 8 ]]; then
-			die "GnuCash needs at least GCC version 8."
-		fi
-	elif tc-is-clang; then
-		if [[ $(clang-major-version) -lt 6 ]]; then
-			die "GnuCash needs at least clang version 6."
-		fi
-	fi
-}
 
 pkg_setup() {
 	use python && python-single-r1_pkg_setup

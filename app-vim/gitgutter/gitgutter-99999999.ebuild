@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 inherit vim-plugin
 
 if [[ ${PV} == 9999* ]]; then
@@ -24,6 +24,6 @@ RDEPEND="dev-vcs/git"
 src_prepare() {
 	default
 
-	# remove unwanted files
-	rm -rv LICENCE README* screenshot.png test || die
+	# remove unwanted test dir
+	rm -rv test || die
 }

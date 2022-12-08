@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{8..11} )
 
 inherit cmake python-any-r1
 
@@ -13,9 +13,9 @@ if [[ ${PV} == *9999 ]]; then
 else
 	MY_P=${PN^}2-${PV}
 	SRC_URI="https://github.com/catchorg/Catch2/archive/v${PV}.tar.gz -> ${MY_P}.tar.gz"
-	KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
-
 	S="${WORKDIR}/${MY_P}"
+
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 fi
 
 DESCRIPTION="Modern C++ header-only framework for unit-tests"
@@ -34,12 +34,13 @@ pkg_setup() {
 
 src_configure() {
 	local mycmakeargs=(
+		-DCATCH_DEVELOPMENT_BUILD=ON
 		-DCATCH_ENABLE_WERROR=OFF
-		-DBUILD_TESTING=$(usex test)
-		-DCATCH_DEVELOPMENT_BUILD=$(usex test)
+		-DCATCH_BUILD_TESTING=$(usex test)
 	)
-	use test &&
-		mycmakeargs+=(-DPYTHON_EXECUTABLE="${PYTHON}")
+	use test && mycmakeargs+=(
+		-DPYTHON_EXECUTABLE="${PYTHON}"
+	)
 
 	cmake_src_configure
 }
